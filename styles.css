@@ -11,6 +11,15 @@ a:visited {
   text-decoration: none;
 }
 
+img {
+  width: 250px;
+  height: 150px;
+}
+
+.container {
+  padding: 2rem;
+}
+
 .header {
   display: flex;
   flex-direction: row;
@@ -26,9 +35,6 @@ a:visited {
   margin-left: 1rem;
 }
 
-/*8367b6*/
-/*b5a4d3*/
-
 .navbar {
   background-color: #8367b6;
   display: flex;
@@ -39,18 +45,34 @@ a:visited {
   display: inherit;
 }
 
-.navbar-links > a {
+.btn {
+  border: 0;
+  background-color: #8367b6;
   color: white;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 1rem;
   padding: 0.5rem;
 }
 
-.navbar-links > a:hover {
-  background-color: #6441a4;
-}
+.btn.active, .btn:active { background-color: #6441a4; }
+.btn:hover { background-color: #6441a4; }
+.btn:focus { outline: none; }
 
-.navbar-under {
+.navbar-underline {
   background-color: #b5a4d3;
   height: 0.5rem;
+}
+
+.stream {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.no-img {
+  background-color: gray;
+  width: 250px;
+  height: 150px;
 }
 
 
