@@ -7,6 +7,8 @@ $(document).ready(function() {
   var activeBtn = 'all';
   getStreamData();
 
+  // Anytime any of the nav buttons are clicked, it will update
+  // the active button variable
   $('.btn').click(function() {
     $('.btn').removeClass('active');
     $(this).toggleClass('active');
@@ -41,10 +43,12 @@ $(document).ready(function() {
     });
   }
 
+  // Clears any results in the container
   function clearResults() {
     $('.container').empty();
   }
 
+  // Returns a string for an online stream
   function displayStream(data, logo) {
     var img = '<img src="' + logo +'">';
     var status = '<p><u>Currently Streaming:</u> ' + data.stream.game + ': ' + data.stream.channel.status + '</p>';
@@ -56,6 +60,7 @@ $(document).ready(function() {
     return stream;
   }
 
+  // Returns a string for an offline stream
   function offlineStream(name, logo, user) {
     console.log(user);
     var img = '<img src="' + logo +'">';
@@ -67,6 +72,7 @@ $(document).ready(function() {
     return stream;
   }
 
+  // Returns a string for an null/non-existent stream
   function nullStream(name) {
     var img = '<div class="no-img"></div>';
     var channel = '<span class="stream-title">' + name + '</span>';
