@@ -12,7 +12,6 @@ $(document).ready(function() {
     $(this).toggleClass('active');
     activeBtn = $(this).val();
     getStreamData();
-    console.log(activeBtn);
   });
 
   function getStreamData() {
@@ -22,7 +21,6 @@ $(document).ready(function() {
         var isStreaming = (data.stream !== null) ? true : false;
         // Get logo
         $.getJSON(url + 'users/' + name + '?callback=?').success(function(user) {
-          console.log(user);
           if(user.hasOwnProperty('error') && activeBtn === 'all') {
             $('.container').append(nullStream(name));
           } else {
@@ -49,20 +47,23 @@ $(document).ready(function() {
 
   function displayStream(data, logo) {
     var img = '<img src="' + logo +'">';
-    var status = '<p>' + data.stream.game + ': ' + data.stream.channel.status + '</p>';
+    var status = '<p><u>Currently Streaming:</u> ' + data.stream.game + ': ' + data.stream.channel.status + '</p>';
     var link = 'https://www.twitch.tv/' + data.stream.channel.display_name;
     var channel = '<a href="' + link + '"><span class="stream-title">' +
-    data.stream.channel.display_name + '</span></a>';
-    var stream = '<div class="stream">' + img + channel + status + '</div>';
+    data.stream.channel.display_name + '</span></a> <i class="fa fa-circle green"></i>';
+    var stream = '<div class="stream">' +  img + '<div class="stream-desc">' +
+    channel + status + '</div></div>';
     return stream;
   }
 
-  function offlineStream(name, logo) {
+  function offlineStream(name, logo, user) {
+    console.log(user);
     var img = '<img src="' + logo +'">';
     var link = 'https://www.twitch.tv/' + name;
     var channel = '<a href="' + link + '"><span class="stream-title">' +
     name + '</span></a>';
-    var stream = '<div class="stream">' + img + channel + '</div>';
+    var stream = '<div class="stream">' + img + '<div class="stream-desc">' +
+    channel + '</div></div>';
     return stream;
   }
 
@@ -70,7 +71,8 @@ $(document).ready(function() {
     var img = '<div class="no-img"></div>';
     var channel = '<span class="stream-title">' + name + '</span>';
     var desc = '<p>Channel not available.</p>';
-    var stream = '<div class="stream">' + img + channel + desc + '</div>';
+    var stream = '<div class="stream">' + img +
+    '<div class="stream-desc">' + channel + desc + '</div></div>';
     return stream;
   }
 });
